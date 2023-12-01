@@ -1,0 +1,57 @@
+﻿@model IEnumerable<FinalProject.Models.TransactionDetail>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<!-- Authorization tags for "employee" and "manager" roles -->
+@if (User.IsInRole("employee") || User.IsInRole("manager"))
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.TransactionNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Seat)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PaymentMethod)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TransactionNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Seat)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PaymentMethod)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.TransactionDetailID">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.TransactionDetailID">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.TransactionDetailID">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>You do not have permission to view transaction details.</p>
+}
+<!-- End of Authorization tags -->

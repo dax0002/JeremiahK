@@ -1,0 +1,35 @@
+﻿@model IEnumerable<FinalProject.Models.Movie>
+
+    @{
+        ViewData["Title"] = "Explore Movies";
+    }
+
+    <h2>Explore Movies</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Tagline</th>
+                <th>Release Year</th>
+                <th>Runtime</th>
+                <th>Actors</th>
+                <th>Avg Rating</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var movie in Model)
+            {
+                <tr>
+                    <td>@movie.MovieTitle</td>
+                    <td>@movie.Description</td>
+                    <td>@movie.Tagline</td>
+                    <td>@movie.ReleaseYear</td>
+                    <td>@movie.Runtime</td>
+                    <td>@movie.Actors</td>
+                    <td>@movie.AvgRating</td>
+                </tr>
+            }
+        </tbody>
+    </table>
